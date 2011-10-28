@@ -1,5 +1,5 @@
 PageEditSoftLock 1.0.0
-by Philipp "Soma" Urlich
+by Philipp "Soma" Urlich, philipp at urlich dot ch
 A custom module for ProcessWire2.1+
 http://processwire.com/talk/index.php/topic,637.0.html
 

@@ -15,7 +15,7 @@
  * http://www.ryancramer.com
  *
  *
- * @author Philipp 'Soma' Urlich, philipp at urlich dot com
+ * @author Philipp 'Soma' Urlich, philipp at urlich dot ch
  *
  * @date 27/10/2011
  * 
@@ -28,8 +28,9 @@ class ProcessPageEditSoftLock extends Process{
 	public static function getModuleInfo() {
 		return array(
 			'title' => 'Process Page Edit Soft Lock',
-			'summary' => 'Provides admin process page for Page Edit Soft Lock module',
+			'summary' => 'Provides admin process page for the "Page Edit Soft Lock" module.',
 			'version' => 100,
+			'href' => 'http://processwire.com/talk/index.php/topic,637.0.html',
 			'permanent' => false,
 			'singular' => true, 
 			'autoload' => true,
