@@ -1,7 +1,7 @@
 PageEditSoftLock 1.0.0
 by Philipp "Soma" Urlich
 A custom module for ProcessWire2.1+
-
+http://processwire.com/talk/index.php/topic,637.0.html
 
 This Module will add an alert message for pages already being edited by another user. It will show name and email. Page will still be editable to your own risk.
 

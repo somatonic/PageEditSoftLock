@@ -34,6 +34,7 @@ class PageEditSoftLock extends WireData implements Module, ConfigurableModule {
 			'title' => 'Page Edit Soft Lock',
 			'summary' => 'Throws alert message when page is being edited by another user.',
 			'version' => 100,
+			'href' => 'http://processwire.com/talk/index.php/topic,637.0.html',
 			'permanent' => false,
 			'singular' => true, 
 			'autoload' => true
