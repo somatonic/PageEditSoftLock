@@ -25,7 +25,7 @@
 class PageEditSoftLock extends WireData implements Module, ConfigurableModule {
 	
 	static protected $defaults = array(
-		'pingInterval' => 20000,
+		'pingInterval' => 20,
 		'removeLockTimeout' => 60
 		);
 	
@@ -49,6 +49,8 @@ class PageEditSoftLock extends WireData implements Module, ConfigurableModule {
 	
 	public function checkpagestatus(HookEvent $event){
 		
+		if($this->config->ajax) return;
+		
 		$config = self::$defaults;
 		foreach($config as $key => $unused) {
 			$config[$key] = $this->get($key) ? $this->get($key) : $config[$key] ;
@@ -64,7 +66,7 @@ class PageEditSoftLock extends WireData implements Module, ConfigurableModule {
 		$page = $process->getPage(); 
 
 		$pingurl = $this->config->urls->admin . "page/edit/checkpagelock/updatestatus/";
-		$interval = $config["pingInterval"];
+		$interval = $config["pingInterval"]*1000;
 		$script = <<< _END
 
 <script type="text/javascript">
@@ -131,13 +133,13 @@ _END;
 		$field = $modules->get("InputfieldInteger"); 
 		$field->attr('name', 'pingInterval'); 
 		$field->attr('value', $data['pingInterval']); 
-		$field->label = "Ping interval in ms (default 20000)";
+		$field->label = "Ping interval in seconds (default 20)";
 		$fields->append($field);
 		
 		$field = $modules->get("InputfieldInteger"); 
 		$field->attr('name', 'removeLockTimeout'); 
 		$field->attr('value', $data['removeLockTimeout']); 
-		$field->label = "Remove lock timeout in seconds (default 60)";
+		$field->label = "Expiration time to remove soft lock seconds (default 60)";
 		$fields->append($field);
 		
 		return $fields;

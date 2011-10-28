@@ -52,14 +52,8 @@ class ProcessPageEditSoftLock extends Process{
 		
 		if(!$user_id || !$page_id) return;
 		
-		try {
-		   $this->db->query("INSERT INTO users_editing_page SET page_id=$page_id, user_id=$user_id, ts=$time"); 
-		} catch(Exception $e) {
-		   // already here
-		   $this->db->query("UPDATE users_editing_page SET ts=$time WHERE user_id=$user_id AND page_id=$page_id"); 
-		}
-		
-		$this->message("Well hello $user_id");
+		$this->db->query("INSERT INTO users_editing_page (page_id, user_id, ts) VALUES($page_id, $user_id, $time) ON DUPLICATE KEY UPDATE ts=VALUES(ts), user_id=VALUES(user_id)");
+
 		return "user_id: ".$user_id;
 	}
 	
