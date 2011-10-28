@@ -1,0 +1,9 @@
+
+
+# ignore all .htaccess
+.htaccess
+test*.php
+test_*
+___*.php
+.tmp*
+.DS_Store
