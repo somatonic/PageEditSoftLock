@@ -72,8 +72,8 @@ class PageEditSoftLock extends WireData implements Module, ConfigurableModule {
 <script type="text/javascript">
 
 $(function(){
-	var t = window.setInterval(ping,$interval);
-	function ping(){
+	var t = window.setInterval(pwsoftlockping,$interval);
+	function pwsoftlockping(){
 	
 		$.ajax({
 			url: '$pingurl',
@@ -104,7 +104,7 @@ _END;
 		    $user = $this->users->get($user_id); 
 		
 			// check if current user is same user we output ping script
-		    if($user === $this->user){
+		    if($user_id == $this->user->id){
 				$event->return .= $script;
 			}
 			// if it another user we throw an alert and error message
