@@ -1,62 +1,62 @@
 <?php
 
 /**
- * ProcessWire, Process Page Edit Soft Lock  Module 1.0.0
+ * ProcessWire, Process Page Edit Soft Lock
  *
  * This module provides function to update edit lock status
  * It will get called through from PageEditSoftLock's js script when editing a page
  *
- * 
- * ProcessWire 2.x 
- * Copyright (C) 2011 by Ryan Cramer 
+ *
+ * ProcessWire 2.x
+ * Copyright (C) 2011 by Ryan Cramer
  * Licensed under GNU/GPL v2, see LICENSE.TXT
- * 
+ *
  * http://www.processwire.com
  * http://www.ryancramer.com
  *
  *
  * @author Philipp 'Soma' Urlich, philipp at urlich dot ch
  *
- * @date 27/10/2011
- * 
+ * @created 27/10/2011
+ *
  *
  */
 
 class ProcessPageEditSoftLock extends Process{
-	
-	
+
+
 	public static function getModuleInfo() {
 		return array(
 			'title' => 'Process Page Edit Soft Lock',
 			'summary' => 'Provides admin process page for the "Page Edit Soft Lock" module.',
-			'version' => 100,
+			'version' => 101,
 			'href' => 'http://processwire.com/talk/index.php/topic,637.0.html',
 			'permanent' => false,
-			'singular' => true, 
+			'singular' => true,
 			'autoload' => true,
 			'permission' => 'page-edit'
 		);
 	}
-	
+
 
 	public function ___execute(){
-		
+
 	}
-	
+
 	public function executeUpdateStatus(){
-		
-		$time = time(); 
+
+		$time = time();
 
 		$user_id = (int) $this->input->get->user_id;
 		$page_id = (int) $this->input->get->page_id;
-		
+
 		if(!$user_id || !$page_id) return;
-		
+
 		$this->db->query("INSERT INTO users_editing_page (page_id, user_id, ts) VALUES($page_id, $user_id, $time) ON DUPLICATE KEY UPDATE ts=VALUES(ts), user_id=VALUES(user_id)");
 
 		return "user_id: ".$user_id;
 	}
-	
+
 
 
 }
